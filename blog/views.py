@@ -1,8 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Blog_Project
 
 
 def all_blogs(request):
-    projects = Blog_Project.objects.order_by()[:2] #упорядочить и отобразить только 2
-    return render(request, 'blog/all_blogs.html', {'projects': projects})
+    blogs = Blog_Project.objects.order_by() #упорядочить
+    return render(request, 'blog/all_blogs.html', {'blogs': blogs})
 
+
+def detail(request, blog_id):
+    blog = get_object_or_404(Blog_Project, pk=blog_id)
+    return render(request, 'blog/detail.html', {'blog': blog})
