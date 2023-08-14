@@ -8,3 +8,6 @@ class Project(models.Model):
     url = models.URLField(blank=True)  # blank для открывания в новой вкладке
 
     objects = models.Manager()
+
+    def __str__(self):
+        return self.title

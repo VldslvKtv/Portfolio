@@ -7,3 +7,6 @@ class Blog_Project(models.Model):
     date = models.DateField(auto_now=False)
 
     objects = models.Manager()
+
+    def __str__(self):               # отображение названий в админке
+        return self.title

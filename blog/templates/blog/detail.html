@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+{% extends 'portfolio/base_template.html' %}
+
+{% block content %}
+
 <body>
 {{ blog.title }}
+
+<h2>{{ blog.date|date:'F jS Y' }}</h2>
+
+<p>{{ blog.description|safe }}</p> {#  используем тэги html прямо в админке #}
 </body>
-</html>
+
+{% endblock %}

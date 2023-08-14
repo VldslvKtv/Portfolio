@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Portfolio</title>
-</head>
-<body>
+{% extends 'portfolio/base_template.html' %}
+
+{% block content %}
 <h1>My portfolio</h1>
 <br>
-
 {% load static %}
 <img src="{% static 'portfolio/1.jpg' %}" height="480" width="855">
 <br>
@@ -26,5 +21,4 @@
 {% endfor %}
 <br>
 <a href="{% url 'blog:all_blogs' %}">Blog</a>
-</body>
-</html>
+{% endblock %}
