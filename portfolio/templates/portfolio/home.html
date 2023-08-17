@@ -1,24 +1,60 @@
 {% extends 'portfolio/base_template.html' %}
 
 {% block content %}
-<h1>My portfolio</h1>
+<h1 style="position: relative; left: 620px">My portfolio  </h1>
 <br>
 {% load static %}
-<img src="{% static 'portfolio/1.jpg' %}" height="480" width="855">
+<img src="{% static 'portfolio/1.jpg' %}" style="position: relative; left: 320px" height="480" width="855">
 <br>
-<a href="{% static 'portfolio/2.pdf' %}"> Resume </a>
 
-{% for project in projects %}
-
-<h2>{{ project.title }}</h2>
-<p>{{ project.description }}</p>
-<img src="{{ project.image.url }}" height="160" width="120">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<style type="text/css">
+ .carousel-inner > .item > img {
+   width:440px;
+   height:360px;
+ }
+}
+</style>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+<!-- Indicators -->
+<ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0"></li>
+    <li data-target="#myCarousel" data-slide-to="1" ></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+</ol>
 <br>
-{% if project.url %}
-<a href="{{ project.url }}">Link</a>
-{% endif %}
+<!-- Wrapper for slides -->
+<div class="carousel-inner" role="listbox">
+    {% for project in projects %}
+    {% if forloop.counter == 1 %}
+    <div class="item active">
+    {% else %}
+    <div class="item">
+    {% endif %}
+        <img src="{{ project.image.url }}" style="position: relative; left: 600px;" alt="Image" width="300" height="225">
+  <div class="carousel-caption">
+    <h3 style="position: relative; bottom: 200px;">{{ project.title }}</h3>
+    <p style="position: relative; top: 70px;">{{ project.description }}</p>
+     {% if project.url %}
+             <a href="{{ project.url }}">Подробнее</a>
+      {% endif %}
+  </div>
+    </div>
+    {% endfor %}
+    </div>
 
-{% endfor %}
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
 <br>
-<a href="{% url 'blog:all_blogs' %}">Blog</a>
 {% endblock %}
